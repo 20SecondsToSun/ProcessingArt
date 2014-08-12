@@ -1,7 +1,6 @@
-
 float _sideSizeX = 20;
 float _sideSizeY = 20;
-float _sideSizeZ = 800*0.2;
+float _sideSizeZ = 160;
 float space = 100;
 float sdvigX = 40;
 
@@ -9,6 +8,7 @@ void setup() {
   size(800, 800, P3D);
   ortho();
   smooth(8);
+  
 }
  
 void draw() {
@@ -17,11 +17,13 @@ void draw() {
   translate(width/2, height/2);
   rotateX((mouseX-width/2)*0.01);
   rotateY((mouseY-height/2)*0.01);
-
-  noFill();
-  box(sideLength, sideLength, sideLength);
   
-  noStroke();
+  pointLight(51, 102, 126, 0, 100, 0);
+
+ // noFill();
+ // box(sideLength, sideLength, sideLength);
+  
+  //noStroke();
  
   fill(#FFCC00);
   drawBox(-sideLength*0.5, -sideLength*0.5, 0, 0, 0, 0);
@@ -59,9 +61,9 @@ void drawBox(float x,float y, float z, float rotX, float rotY, float rotZ )
 {
   pushMatrix();
   
-  rotateX(rotX*3.1415/180);
-  rotateY(rotY*3.1415/180);
-  rotateZ(rotZ*3.1415/180);
+  rotateX(DEEGRE_TO_GRAD(rotX));
+  rotateX(DEEGRE_TO_GRAD(rotY));
+  rotateX(DEEGRE_TO_GRAD(rotZ));
   
   translate(x, y, z);
   
@@ -74,15 +76,19 @@ void drawBox(float x,float y, float z, float rotX, float rotY, float rotZ , floa
 {
    pushMatrix();
   
-  rotateX(rotX*3.1415/180);
-  rotateY(rotY*3.1415/180);
-  rotateZ(rotZ*3.1415/180);
+  rotateX(DEEGRE_TO_GRAD(rotX));
+  rotateX(DEEGRE_TO_GRAD(rotY));
+  rotateX(DEEGRE_TO_GRAD(rotZ));
   
   translate(x, y, z);
   
   box(sizeX, sizeY,  sizeZ); 
   
   popMatrix();
+}
+float DEEGRE_TO_GRAD(float deegree)
+{
+  return degree*3.1415/180;
 }
 
 
